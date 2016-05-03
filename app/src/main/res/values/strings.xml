@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChatWithoutInternet</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main_activity2">MainActivity2</string>
+    <string name="title_activity_msg">MsgActivity</string>
+    <string name="title_activity_file_sharing">FileSharingActivity</string>
+    <string name="empty">Empty</string>
+    <string name="createButton">Create</string>
+    <string name="title_activity_file_chooser">FileChooser</string>
+    <string name="title_activity_private_chat">PrivateChatActivity</string>
+    <string name="title_activity_client_select">ClientSelectActivity</string>
+    <string name="appName">Chat Without Internet</string>
+    <string name="userName">User Name</string>
+    <string name="startServer">Start Server</string>
+    <string name="connectClient">Connect Client</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="selectFile">Select File</string>
+
+</resources>

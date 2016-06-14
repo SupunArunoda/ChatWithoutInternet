@@ -15,11 +15,6 @@
     android:alignmentMode="alignBounds"
     android:padding="0dp">
 
-    <TextView
-        android:id="@+id/port"
-        android:textColor="#f6f4ff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 
     <TextView

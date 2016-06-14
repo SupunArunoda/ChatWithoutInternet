@@ -45,8 +45,8 @@ public class ClientSelectActivity  extends Activity {
 
         username = (String) getIntent().getExtras().get("name");
 
-        textPort = (TextView) findViewById(R.id.port);
-        textPort.setText("port: " + SocketServerPORT);
+       // textPort = (TextView) findViewById(R.id.port);
+       // textPort.setText("port: " + SocketServerPORT);
 
         SelectClient sendImage = new SelectClient();
         sendImage.execute((Void) null);
@@ -92,8 +92,4 @@ public class ClientSelectActivity  extends Activity {
             return true;
         }
     }
-
-
-
-
 }

@@ -9,10 +9,6 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
-/**
- * Created by Supun Athukorala on 9/9/2015
- * 11:15 PM.
- */
 
 public class WifiApiManager {
     private final WifiManager mWifiManager;

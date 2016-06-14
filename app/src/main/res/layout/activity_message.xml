@@ -123,7 +123,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="129dp"
             android:layout_height="wrap_content"
-            android:text="Choose File"
+            android:text="Chat History"
             android:id="@+id/buttonSelect"
             android:layout_gravity="center_horizontal"
             android:layout_row="0"

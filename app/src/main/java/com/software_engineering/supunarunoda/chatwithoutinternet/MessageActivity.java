@@ -3,6 +3,7 @@ package com.software_engineering.supunarunoda.chatwithoutinternet;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.software_engineering.supunarunoda.chatwithoutinternet.data.DB.SQLChatDAO;
+import com.software_engineering.supunarunoda.chatwithoutinternet.data.model.Chat;
 import com.software_engineering.supunarunoda.chatwithoutinternet.filebrowser.FileChooser;
 
 import java.io.File;
@@ -61,6 +64,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
     private MulticastSocket fileSocket;
     private InetAddress fileGroup;
     private String username;
+    private String chatname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +72,9 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
         setContentView(R.layout.activity_message);
 
         username = (String) getIntent().getExtras().get("name");
+        chatname = (String) getIntent().getExtras().get("chatname");
         TextView userNm = (TextView) findViewById(R.id.usrName);
-        userNm.setText(username);//set user name onscreen
+        userNm.setText(chatname);//set user name onscreen
 
         listView = (ListView) findViewById(R.id.listView);
 
@@ -113,7 +118,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
                 socket.setInterface(ip);
                 socket.setBroadcast(true);
 
-                group = InetAddress.getByName("224.0.0.1");
+                group = InetAddress.getByName("224.0.0.1");//224.0.0.1
                 socket.joinGroup(new InetSocketAddress(group, portNum), networkInterface);
 
                 fileSocket = new MulticastSocket(portNum+1);
@@ -184,6 +189,8 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
                 EditText text = (EditText) findViewById(R.id.editText2);
                 String textMsg = text.getText().toString();
                 text.setText("");
+                MediaPlayer mp = MediaPlayer.create(this,R.raw.msgalert);//to play a sound
+                mp.start();
                 SendMessage sendMessage = new SendMessage(textMsg);
                 sendMessage.execute((Void) null);
                 break;
@@ -194,8 +201,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
 
                 break;
             case R.id.buttonSelect:
-
-                Intent intent1 = new Intent(this, FileChooser.class);
+                Intent intent1 = new Intent(this, ChatHistoryActivity.class);
                 startActivityForResult(intent1, REQUEST_PATH);
                 break;
         }
@@ -276,7 +282,12 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
         SendMessage(String message) {
 
             textMsg = username + " : " + message;
+            Chat chat=new Chat(chatname,textMsg);
+           SQLChatDAO sqlChatDAO=new SQLChatDAO();
+            sqlChatDAO.addChat(chat);
+
         }
+
 
         @Override
         protected Boolean doInBackground(Void... params) {

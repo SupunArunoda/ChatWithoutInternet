@@ -60,8 +60,8 @@ public class FileSharingActivity extends Activity {
         Intent i = new Intent(Intent.ACTION_PICK, Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
 
-        textPort = (TextView)findViewById(R.id.port);
-        textPort.setText("port: " + SocketServerPORT);
+        //textPort = (TextView)findViewById(R.id.port);
+        //textPort.setText("port: " + SocketServerPORT);
 
     }
 

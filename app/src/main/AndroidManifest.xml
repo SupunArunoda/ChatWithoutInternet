@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".data.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -48,6 +49,14 @@
         <activity
             android:name="com.software_engineering.supunarunoda.chatwithoutinternet.ClientSelectActivity"
             android:label="@string/title_activity_client_select" >
+        </activity>
+        <activity
+        android:name="com.software_engineering.supunarunoda.chatwithoutinternet.ChatHistoryActivity"
+        android:label="@string/title_activity_chat_history" >
+    </activity>
+        <activity
+            android:name="com.software_engineering.supunarunoda.chatwithoutinternet.HistoryViewActivity"
+            android:label="@string/title_activity_history_view" >
         </activity>
     </application>
 

@@ -1,13 +1,17 @@
 package com.software_engineering.supunarunoda.chatwithoutinternet;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +25,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView mainText;
     private String networkSSID = "Chat Without Internet";
     private String networkPass = "pass";
+    private EditText user;
+    private EditText chatter;
+    private boolean hotspot=false;
+    private boolean wifi=false;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +48,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonchat:
-                Intent i = new Intent(MainActivity.this, MessageActivity.class);
-                EditText user = (EditText) findViewById(R.id.userName);
-                i.putExtra("name", user.getText().toString());
-                startActivity(i);
+                user = (EditText) findViewById(R.id.userName);
+                chatter = (EditText) findViewById(R.id.chatName);
+                if(user.getText().toString().equals("") || chatter.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Make Sure to Fill UserName Text & ChatName Text",Toast.LENGTH_SHORT).show();
+                }else if(hotspot==false && wifi==false){
+                    Toast.makeText(getApplicationContext(),"Make Sure to Connect to the WiFi network",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent i = new Intent(MainActivity.this, MessageActivity.class);
+                    i.putExtra("name", user.getText().toString());
+                    i.putExtra("chatname", chatter.getText().toString());
+                    startActivity(i);
+                }
                 break;
             case R.id.buttonCreate:
                 CreateWifiAccessPoint createOne = new CreateWifiAccessPoint();
@@ -54,12 +71,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 joinOne.execute((Void) null);
                 break;
             case R.id.buttonPrivate:
-                 i = new Intent(MainActivity.this, ClientSelectActivity.class);
+                Intent i = new Intent(MainActivity.this, ClientSelectActivity.class);
                  user = (EditText) findViewById(R.id.userName);
                 i.putExtra("name", user.getText().toString());
                 startActivity(i);
-
-
 
         }
 
@@ -77,6 +92,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             Method[] wmMethods = wifiManager.getClass().getDeclaredMethods();
             boolean methodFound = false;
+
             for (Method method : wmMethods) {
                 if (method.getName().equals("setWifiApEnabled")) {
                     methodFound = true;
@@ -106,9 +122,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 public void run() {
                                     if (apStatus) {
                                         System.out.println("SUCCESS ");
+                                        hotspot=true;
                                     Toast.makeText(getApplicationContext(),"Wifi Hotspot Created",Toast.LENGTH_SHORT).show();
+
                                     } else {
                                         System.out.println("FAILED");
+                                        hotspot=false;
                                         Toast.makeText(getApplicationContext(),"Wifi Hotspot Creation Failed",Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -149,6 +168,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 public void run() {
                     Toast.makeText(getApplicationContext(),"Joined to "+networkSSID,Toast.LENGTH_SHORT).show();
                     System.out.println("SUCCESS ");
+                    wifi=true;
                 }
             });
             return null;

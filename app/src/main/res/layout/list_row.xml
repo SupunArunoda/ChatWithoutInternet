@@ -2,11 +2,11 @@
     android:id="@+id/rowTextView"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="25dp"
-    android:textColor="#040404"
+    android:padding="35dp"
+    android:textColor="@color/DeepSkyBlue"
     android:typeface="sans"
-    android:textSize="15dip"
+    android:textSize="30dip"
     android:textStyle="bold"
-    android:background="@drawable/btn_live_dark"
+
      >
 </TextView>  

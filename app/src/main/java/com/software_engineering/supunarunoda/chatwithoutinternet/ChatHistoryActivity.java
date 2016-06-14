@@ -25,7 +25,7 @@ public class ChatHistoryActivity extends Activity{
     private ListView mainListView ;
     private ArrayAdapter<String> listAdapter ;
     SQLChatDAO sqlChatDAO;
-    ArrayList<String> planetList;
+    ArrayList<String> chatNameList;
     ArrayList<String> chatDataList;
     ArrayList<Chat> chatList;
     @Override
@@ -37,16 +37,16 @@ public class ChatHistoryActivity extends Activity{
         sqlChatDAO=new SQLChatDAO();
         chatList=sqlChatDAO.getChatList();
 
-        planetList = new ArrayList<String>();
+        chatNameList = new ArrayList<String>();
         for(Chat c:chatList){
-            planetList.add(c.getChat_name());
+            chatNameList.add(c.getChat_name());
         }
         Set<String> hs = new HashSet<>();
-        hs.addAll(planetList);
-        planetList.clear();
-        planetList.addAll(hs);
-        // Create ArrayAdapter using the planet list.
-        listAdapter = new ArrayAdapter<String>(this, R.layout.list_row, planetList);
+        hs.addAll(chatNameList);
+        chatNameList.clear();
+        chatNameList.addAll(hs);
+
+        listAdapter = new ArrayAdapter<String>(this, R.layout.list_row, chatNameList);
 
         mainListView.setAdapter( listAdapter );
 

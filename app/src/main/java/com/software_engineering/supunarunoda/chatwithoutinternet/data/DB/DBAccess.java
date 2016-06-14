@@ -57,22 +57,7 @@ public class DBAccess {
     }
 
 
-    public static String getTimeAsString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return simpleDateFormat.format(date);
-    }
 
-
-    public static Date getTimeAsValue(String str) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date date = new Date();
-        try {
-            date = dateFormat.parse(str);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
 
 
 

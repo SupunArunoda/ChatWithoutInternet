@@ -29,7 +29,7 @@ public class HistoryViewActivity extends Activity {
         setContentView(R.layout.activity_history_view);
         mainListView = (ListView) findViewById(R.id.history_view);
         namechat=(TextView) findViewById(R.id.historyViewtext);
-        chat_name = (String) getIntent().getExtras().get("chatname");
+       chat_name = (String) getIntent().getExtras().get("chatname");
         chatdatalist=(ArrayList)getIntent().getExtras().get("chatdata");
 
         listAdapter = new ArrayAdapter<String>(this, R.layout.list_row_history, chatdatalist);

@@ -130,7 +130,7 @@
         <Button
             android:layout_width="209dp"
             android:layout_height="wrap_content"
-            android:text="Chat"
+            android:text="Group Chat"
             android:id="@+id/buttonchat"
             android:layout_gravity="center_horizontal"
             android:layout_row="0"

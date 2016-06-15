@@ -45,9 +45,20 @@ public class DBAccessTest {
 
         ArrayList<Chat> mylist=chatDAO.getChatList();
 
-        String val1="MyFirst";
-        assertThat(mylist.size(),is(3));
-
+        assertThat(mylist.size(),is(1));
+        assertTrue(mylist.get(0).getChat_name().equals("MyFirst"));
+        assertTrue(mylist.get(0).getChat_data().equals("Hello ! How are u?"));
 
     }
-}
+
+    @Test
+    public void getChatListTest() {
+
+        SQLChatDAO chatDAO=new SQLChatDAO();
+        chatDAO.addChat(new Chat("MySecond", "Hi, Whats up?"));
+
+        ArrayList<Chat> mylist=chatDAO.getChatList();
+        assertTrue(mylist.get(0).getChat_data().equals("Hi, Whats up?"));
+        assertTrue(mylist.get(0).getChat_name().equals("MySecond"));
+    }
+    }

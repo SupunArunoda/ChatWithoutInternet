@@ -6,10 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import com.software_engineering.supunarunoda.chatwithoutinternet.data.model.Chat;
-import com.software_engineering.supunarunoda.chatwithoutinternet.data.model.User;
+
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Supun on 6/13/2016.

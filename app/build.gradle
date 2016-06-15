@@ -9,12 +9,17 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'LICENSE.txt'
+    }
     defaultConfig {
         applicationId "com.example.application"
         minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
 
@@ -28,15 +33,16 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-   // androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
-   // compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:design:23.1.1'
 
 
     androidTestCompile 'com.android.support.test:runner:0.4'
+    androidTestCompile 'com.android.support:support-annotations:23.1.1'
     // Set this dependency to use JUnit 4 rules
-   // androidTestCompile 'com.android.support.test:rules:0.4'
+    androidTestCompile 'com.android.support.test:rules:0.4'
     // Set this dependency to build and run Espresso tests
-
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
 
 }

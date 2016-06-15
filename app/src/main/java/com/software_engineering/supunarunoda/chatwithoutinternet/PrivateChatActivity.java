@@ -236,6 +236,7 @@ public class PrivateChatActivity extends Activity implements View.OnClickListene
         }
     }
 
+    //initialise inputstream reader set host addresses
     private class chatSender implements Runnable {
 
         public void run() {
@@ -269,6 +270,7 @@ public class PrivateChatActivity extends Activity implements View.OnClickListene
         }
     }
 
+    //Initialise chat receiver thread
     private class chatReceiver implements Runnable {
 
         public void run() {
@@ -315,6 +317,7 @@ public class PrivateChatActivity extends Activity implements View.OnClickListene
         }
     }
 
+    //Initialsie chat receiver handler
     private class chatReceiveHandler extends Thread {
         Socket newSocket;
         int n;

@@ -20,6 +20,8 @@ import java.util.Set;
 /**
  * Created by Supun on 6/14/2016.
  */
+
+//class to view avaialable chat names list
 public class ChatHistoryActivity extends Activity{
 
     private ListView mainListView ;
@@ -36,7 +38,6 @@ public class ChatHistoryActivity extends Activity{
         mainListView = (ListView) findViewById( R.id.chat_history );
         sqlChatDAO=new SQLChatDAO();
         chatList=sqlChatDAO.getChatList();
-
         chatNameList = new ArrayList<String>();
         for(Chat c:chatList){
             chatNameList.add(c.getChat_name());
@@ -48,10 +49,11 @@ public class ChatHistoryActivity extends Activity{
 
         listAdapter = new ArrayAdapter<String>(this, R.layout.list_row, chatNameList);
 
-        mainListView.setAdapter( listAdapter );
+        mainListView.setAdapter( listAdapter );//view list on ui
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            //Add click listner to get items
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {

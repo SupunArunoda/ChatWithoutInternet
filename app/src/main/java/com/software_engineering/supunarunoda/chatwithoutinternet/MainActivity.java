@@ -80,6 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+
+    //create a wifi hotspot from app
     private class CreateWifiAccessPoint extends AsyncTask<Void, Void, Boolean> {
         {
         }
@@ -143,6 +145,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    //Enable wifi and join to server
     private class JoinWifiNetwork extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Void... params) {

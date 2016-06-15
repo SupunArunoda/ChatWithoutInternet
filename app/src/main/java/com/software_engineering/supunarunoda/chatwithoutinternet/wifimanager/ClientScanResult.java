@@ -1,6 +1,7 @@
 package com.software_engineering.supunarunoda.chatwithoutinternet.wifimanager;
 
 
+//class to search available clients nearby
 public class ClientScanResult {
 
     private String IpAddr;

@@ -207,6 +207,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
         }
     }
 
+    //method get IP address from network interface
     private String getIpAddress() {
         String ip = "";
         try {
@@ -305,6 +306,8 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
         }
     }
 
+
+    //File Receiving task performed
     public class FileReciveThread extends Thread {
 
         @Override
@@ -449,6 +452,7 @@ public class MessageActivity extends Activity implements View.OnClickListener {/
         }
     }
 
+    //update list messages
     private void updateListView(final String message) {
 
         values = new String[recQue.size()];

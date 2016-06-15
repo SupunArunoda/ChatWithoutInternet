@@ -27,12 +27,7 @@ public class MainActivityTest {
     @Test
     public void validateUserName() {
         onView(withId(R.id.userName)).perform(typeText("John")).check(matches(withText("John")));
-
     }
-    @Test
-    public void validateButtonChat(){
-
-}
     @Test
     public void validateChatName() {
         onView(withId(R.id.chatName)).perform(typeText("Chat Room")).check(matches(withText("Chat Room")));

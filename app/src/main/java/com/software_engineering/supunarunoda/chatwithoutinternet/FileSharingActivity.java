@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 import static android.provider.MediaStore.Images;
 
+
+//class for transfer file sharing
 public class FileSharingActivity extends Activity {
 
     private static final int SELECT_PICTURE = 1;
@@ -59,10 +61,6 @@ public class FileSharingActivity extends Activity {
         username = (String) getIntent().getExtras().get("name");
         Intent i = new Intent(Intent.ACTION_PICK, Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-
-        //textPort = (TextView)findViewById(R.id.port);
-        //textPort.setText("port: " + SocketServerPORT);
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -75,6 +73,7 @@ public class FileSharingActivity extends Activity {
         }
     }
 
+    //Asynchronius class to send images
     private class SelectClient extends AsyncTask<Void, Void, Boolean> {
 
         Uri imageUri;
@@ -106,13 +105,9 @@ public class FileSharingActivity extends Activity {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getApplicationContext(), clients.get(position).getIpAddress(), Toast.LENGTH_SHORT).show();
 
                             sendMessage sendImage = new sendMessage(imageUri, clients.get(position).getIpAddress());
                             sendImage.execute((Void) null);
-
-
-
                         }
                     });
                 }
@@ -121,6 +116,7 @@ public class FileSharingActivity extends Activity {
         }
     }
 
+    //Message send in bytes
     private class sendMessage extends AsyncTask<Void, Void, Boolean> {
 
         Uri selectedImage;
@@ -147,6 +143,7 @@ public class FileSharingActivity extends Activity {
         }
     }
 
+    //get path to image file
     private String getPath(Uri uri) {
         String[] projection = new String[]{Images.Media.DATA};
         Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
@@ -157,6 +154,7 @@ public class FileSharingActivity extends Activity {
         return returnPath;
     }
 
+    //Client send files
     private class ClientSenderThread extends Thread {
         String dstAddress;
         int dstPort;
@@ -182,6 +180,7 @@ public class FileSharingActivity extends Activity {
         }
     }
 
+    //File transfering class
     public class FileTransferThread extends Thread {
         Socket socket;
 
@@ -189,7 +188,7 @@ public class FileSharingActivity extends Activity {
             this.socket= socket;
         }
 
-        @TargetApi(Build.VERSION_CODES.KITKAT)
+       // @TargetApi(Build.VERSION_CODES.KITKAT)
         @Override
         public void run() {
             File file = new File(getPath(newImageUri));

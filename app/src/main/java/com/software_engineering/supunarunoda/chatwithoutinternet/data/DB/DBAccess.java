@@ -23,10 +23,6 @@ public class DBAccess {
     //Database Version
     public static final int DATABASE_VERSION = 1;// started at 1
 
-    //Create User values
-    public static final String USER_NAME = "user_name";
-    public static final String USER_ID = "user_id";
-
     //Create Chat values
     public static final String CHAT_TB = "chat";
     public static final String CHAT_ID = "chat_id";
@@ -34,10 +30,7 @@ public class DBAccess {
     public static final String CHAT_NAME = "chat_name";
 
 
-    //Create table syntax
-    private static final String USER_CREATE =
-            "CREATE TABLE user (user_id INTEGER PRIMARY KEY AUTOINCREMENT,user_name TEXT NOT NULL);";
-
+    //Create table query
     private static final String CHAT_CREATE =
             "CREATE TABLE chat (chat_id INTEGER PRIMARY KEY AUTOINCREMENT,chat_name TEXT NOT NULL,chat_data TEXT NOT NULL);";
 
@@ -47,6 +40,7 @@ public class DBAccess {
     }
 
 
+    //Singleton class to create one object of dbaccess
     public static SQLiteDatabase getWritableDatabase() throws SQLiteException {
         if (dbConnect == null) {
             synchronized (DBAccess.class) {
@@ -56,11 +50,6 @@ public class DBAccess {
         return dbConnect.getWritableDatabase();
     }
 
-
-
-
-
-
     private static class DBConnect extends SQLiteOpenHelper {//Inner class for create only one database Ob using singleton
         public DBConnect() {
             super(CustomApplication.getCustomAppContext(), DATABASE_NAME, null, DATABASE_VERSION);
@@ -69,8 +58,7 @@ public class DBAccess {
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
-                //Create the tables
-              //  db.execSQL(USER_CREATE);
+                //Create tables
                 db.execSQL(CHAT_CREATE);
 
             } catch (Exception exception) {
@@ -82,7 +70,6 @@ public class DBAccess {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
             db.execSQL("DROP TABLE IF EXISTS " + CHAT_TB); //On upgrade drop tables
-            //db.execSQL("DROP TABLE IF EXISTS " + TRANSACTION_TB);
             onCreate(db);
         }
     }

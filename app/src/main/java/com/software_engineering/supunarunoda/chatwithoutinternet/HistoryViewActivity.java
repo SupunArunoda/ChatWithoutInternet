@@ -15,13 +15,13 @@ import java.util.ArrayList;
  * Created by Supun on 6/14/2016.
  */
 
-
+//class for View chat history detail
 public class HistoryViewActivity extends Activity {
     String chat_name;
     private ListView mainListView ;
     private ArrayAdapter<String> listAdapter ;
     private TextView namechat;
-    SQLChatDAO sqlChatDAO;
+
     ArrayList<String> chatdatalist;
     @Override
     public void onCreate(Bundle savedInstanceState) {

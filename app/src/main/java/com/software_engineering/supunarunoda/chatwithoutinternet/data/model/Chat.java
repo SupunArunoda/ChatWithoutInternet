@@ -3,6 +3,8 @@ package com.software_engineering.supunarunoda.chatwithoutinternet.data.model;
 /**
  * Created by Supun on 6/14/2016.
  */
+
+//Chat model class
 public class Chat {
     private int chat_id;
     private String chat_name;
@@ -12,6 +14,7 @@ public class Chat {
         this.chat_name = chat_name;
         this.chat_data = chat_data;
     }
+
 
     public int getChat_id() {
         return chat_id;

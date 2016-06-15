@@ -45,8 +45,6 @@ public class ClientSelectActivity  extends Activity {
 
         username = (String) getIntent().getExtras().get("name");
 
-       // textPort = (TextView) findViewById(R.id.port);
-       // textPort.setText("port: " + SocketServerPORT);
 
         SelectClient sendImage = new SelectClient();
         sendImage.execute((Void) null);
@@ -55,6 +53,7 @@ public class ClientSelectActivity  extends Activity {
 
 
 
+    //Asynchronous class to select Client
     private class SelectClient extends AsyncTask<Void, Void, Boolean> {
 
         @Override
@@ -78,12 +77,11 @@ public class ClientSelectActivity  extends Activity {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getApplicationContext(), clients.get(position).getIpAddress(), Toast.LENGTH_SHORT).show();
 
                             i = new Intent(ClientSelectActivity.this, PrivateChatActivity.class);
                             i.putExtra("ipAddress",clients.get(position).getIpAddress());
                             i.putExtra("name", username);
-                            startActivity(i);
+                            startActivity(i);//start activity from this activity to PrivateChatActivity
 
                         }
                     });

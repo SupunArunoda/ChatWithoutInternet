@@ -9,16 +9,19 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
-
+//class to manage WiFi technology
 public class WifiApiManager {
     private final WifiManager mWifiManager;
 
     public WifiApiManager(Context context) {
         mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
+
     public ArrayList<ClientScanResult> getClientList(boolean onlyReachables) {
         return getClientList(onlyReachables, 300);
     }
+
+    //function to return available clients
     public ArrayList<ClientScanResult> getClientList(boolean onlyReachables, int reachableTimeout) {
         BufferedReader br = null;
         ArrayList<ClientScanResult> result = null;

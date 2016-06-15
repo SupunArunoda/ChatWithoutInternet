@@ -13,8 +13,11 @@ import java.util.ArrayList;
 /**
  * Created by Supun on 6/13/2016.
  */
+
+//class to manipulate Chat related data
 public class SQLChatDAO {
 
+    //add chat details to the database
     public void addChat(Chat chat){
         SQLiteDatabase db = null;
 
@@ -33,6 +36,8 @@ public class SQLChatDAO {
             }
         }
     }
+
+    //get the all chatlists
     public ArrayList<Chat> getChatList() {
         ArrayList<Chat> chatList = new ArrayList<>();
         SQLiteDatabase db = null;
@@ -62,6 +67,7 @@ public class SQLChatDAO {
         return chatList;
     }
 
+    //get specified name related chat details
     public ArrayList<Chat> getChat(String chatname){
         SQLiteDatabase db = null;
         Cursor cursor = null;
